@@ -124,7 +124,12 @@
         <div><strong>${row.created_at}</strong></div>
         <small class="text-muted">Completed: ${row.completed_at || '—'}</small>
     `;
-        window.priceFormatter = value => '₱' + parseFloat(value || 0).toFixed(2);
+        window.priceFormatter = value => {
+            return '₱' + parseFloat(
+                String(value || 0).replace(/,/g, '')
+            ).toFixed(2);
+        };
+
         window.actionFormatter = (value, row) => `
         <button class="btn btn-sm btn-info shadow-sm" onclick="viewReceipt(${row.id})" title="View Receipt">
             <i class="fa fa-eye"></i> View
