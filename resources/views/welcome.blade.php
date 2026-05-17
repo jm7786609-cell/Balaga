@@ -186,9 +186,9 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
                     <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <span class="input-group-text" id="showPasswords"><i class="fas fa-lock"></i></span>
                     </div>
                 </div>
 
@@ -217,7 +217,23 @@
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
     <script>
+        var showPass = false;
         $(document).ready(function() {
+            $('#showPassword').click(function() {
+                $('#showPassword').click(function() {
+                    showPass = !showPass;
+                    if (showPass) {
+                        $(this).html('');
+                        $(this).html('<i class="fas fa-eye-slash"></i>');
+                        $('#password').attr('type', 'text');
+                    } else {
+                        $(this).html('');
+                        $(this).html('<i class="fas fa-eye"></i>');
+                        $('#password').attr('type', 'password');
+                    }
+                });
+            });
+
             // Intercept form submission
             $('form').on('submit', function(e) {
                 e.preventDefault(); // Prevent default form submit
